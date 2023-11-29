@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{{ title }}</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/toastr/toastr.min.css') }}">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/fontawesome-free/css/all.min.css') }}">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Favicon -->
+  <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+ <!-- iCheck -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='dist/css/adminlte.min.css') }}">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo">
+    <p><b>Reset </b>Password</p>
+  </div>
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">You forgot your password? Here you can easily retrieve a new password.</p>
+
+      <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group mt-3">
+          <div class="form-group">
+              {% if form.email.errors %}
+                  {{ form.email(class="form-control form-control is-invalid",placeholder="Email") }}
+                  <div class="invalid-feedback">
+                      {% for error in form.email.errors %}
+                          <span>{{ error }}</span>
+                      {% endfor %}
+                  </div>
+              {% else %}
+              <div class="input-group">
+                  {{ form.email(class="form-control form-control",placeholder="Email") }}
+                  <div class="input-group-append">
+                      <span class="input-group-text">
+                          <i class="fas fa-envelope"></i>
+                      </span>
+                  </div>
+              </div>
+              {% endif %}
+          </div>
+        </fieldset>
+        <div class="row">
+          <div class="col-12">
+            {{ form.submit(class="btn btn-primary btn-block") }}
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+      <p class="mt-3 mb-1">
+        <a href="{{ url_for('login') }}">Login</a>
+      </p>
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery -->
+<script src="{{ url_for('static', filename='plugins/jquery/jquery.min.js') }}"></script>
+<!-- Bootstrap 4 -->
+<script src="{{ url_for('static', filename='plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- AdminLTE App -->
+<script src="{{ url_for('static', filename='dist/js/adminlte.js') }}"></script>
+<script src="{{ url_for('static',filename='plugins/toastr/toastr.min.js') }}"></script>
+<script>
+  $(document).ready(function() {
+    var flashMessages = [
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            ['{{ category }}', '{{ message|safe }}'],
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+    ];
+
+    if (flashMessages) {
+      flashMessages.forEach(function(message) {
+        var category = message[0];
+        var messageText = message[1];
+
+        if (category === "success") {
+          toastr.success(messageText);
+        } else if (category === "info") {
+          toastr.info(messageText);
+        } else if (category === "danger") {
+          toastr.error(messageText);
+        } else if (category === "warning") {
+          toastr.warning(messageText);
+        }
+      });
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<div class="sidebar">
+  <!-- Sidebar user panel (optional) -->
+  <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+    <div class="image">
+      <img src="{{ url_for('static', filename='img/' + current_user.profile_pic) }}" class="img-circle elevation-2" alt="User Image">
+    </div>
+    <div class="info">
+      <a href="{{ url_for('profile') }}" class="d-block">{{ current_user.username }}</a>
+    </div>
+  </div>
+  <!-- Sidebar Menu -->
+  <nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+      <!-- Add icons to the links using the .nav-icon class
+           with font-awesome or any other icon font library -->
+      <li class="nav-item">
+        <a href="{{ url_for('home') }}" class="nav-link {% if request.path == url_for('home') %}active{% endif %}">
+          <i class="nav-icon fas fa-tachometer-alt"></i>
+          <p>
+            Dashboard
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="{{ url_for('accounts') }}" class="nav-link {% if request.path == url_for('accounts') %}active{% endif %}">
+          <i class="nav-icon fas fa-wallet"></i>
+          <p>
+            Accounts
+          </p>
+        </a>
+      </li>
+      <li class="nav-item has-treeview">
+        <a href="#" class="nav-link">
+          <i class="nav-icon fas fa-money-check-alt"></i>
+          <p>
+            Transactions
+            <i class="fas fa-angle-left right"></i>
+            <span class="badge badge-info right">3</span>
+          </p>
+        </a>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{{ url_for('deposits') }}" class="nav-link {% if request.path == url_for('deposits') %}active{% endif %}">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Deposit</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url_for('withdrawals') }}" class="nav-link {% if request.path == url_for('withdrawals') %}active{% endif %}">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Withdraw</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url_for('transactions') }}" class="nav-link {% if request.path == url_for('transactions') %}active{% endif %}">
+              <i class="far fa-circle nav-icon"></i>
+              <p>All Transactions</p>
+            </a>
+          </li>
+        </ul>
+      </li>
+      {% if current_user.usertype == "Admin"%}
+      <li class="nav-item">
+        <a href="{{ url_for('users') }}" class="nav-link {% if request.path == url_for('users') %}active{% endif %}">
+          <i class="nav-icon fas fa-user-alt"></i>
+          <p>
+            Users
+          </p>
+        </a>
+      </li>
+      {% endif %}
+      <li class="nav-item">
+        <a href="{{ url_for('logout') }}" class="nav-link">
+          <i class="nav-icon fas fa-power-off "></i>
+          <p>
+            Logout
+          </p>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.sidebar-menu -->
+</div>

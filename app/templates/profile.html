@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{{ title }}</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/toastr/toastr.min.css') }}">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='plugins/fontawesome-free/css/all.min.css') }}">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Favicon -->
+  <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='dist/css/adminlte.min.css') }}">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="{{ url_for('home') }}" class="nav-link">Home</a>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+
+    <!-- Sidebar -->
+     {% include 'sidebar.html' %}
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Profile</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="{{ url_for('home') }}">Home</a></li>
+              <li class="breadcrumb-item active">User Profile</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-4">
+
+            <!-- Profile Image -->
+            <div class="card card-primary card-outline">
+              <div class="card-body box-profile">
+                <div class="text-center">
+                  <img class="profile-user-img img-fluid img-circle"
+                       src=".{{ url_for('static', filename='img/' + current_user.profile_pic) }}"
+                       alt="User profile picture">
+                </div>
+
+                <h3 class="profile-username text-center">{{ current_user.username }}</h3>
+
+                <p class="text-muted text-center">{{ current_user.usertype }}</p>
+
+                <ul class="list-group list-group-unbordered mb-3">
+                  <li class="list-group-item">
+                    <b>UserID</b> <a class="float-right">{{ current_user.id }}</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>Email</b> <a class="float-right">{{ current_user.email }}</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>Joined</b> <a class="float-right">{{ current_user.reg_date.strftime('%Y-%m-%d')}}</a>
+                  </li>
+                </ul>
+                <div class="btn btn-default btn-block"><b>Qucik Info</b></div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+
+          <div class="col-md-8">
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">About Me</h3>
+              </div><!-- /.card-header -->
+              <div class="card-body">
+                <div class="tab-content">
+                  <div class="tab-pane active" id="settings">
+                    <form class="form-horizontal" method="POST" action="" enctype="multipart/form-data">
+                      {{ form.hidden_tag() }}
+                      <div class="form-group row">
+                        {{ form.username.label(class="col-sm-2 col-form-label") }}
+                        <div class="col-sm-10">
+                          {% if form.username.errors %}
+                            {{ form.username(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.username.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                          {% else %}
+                              {{ form.username(class="form-control") }}
+                          {% endif %}
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        {{ form.email.label(class="col-sm-2 col-form-label") }}
+                        <div class="col-sm-10">
+                          {% if form.email.errors %}
+                            {{ form.email(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.email.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                          {% else %}
+                              {{ form.email(class="form-control") }}
+                          {% endif %}
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="inputName2" class="col-sm-2 col-form-label">User Type</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="inputName2" placeholder="Name" value={{current_user.usertype}} readonly>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        {{ form.picture.label(class="col-sm-2 col-form-label") }}
+                        <div class="col-sm-10">
+                          {{ form.picture(class="form-control-file btn btn-default") }}
+                          {% if form.picture.errors %}
+                              {% for error in form.picture.errors %}
+                                  <span class="text-danger">{{ error }}</span></br>
+                              {% endfor %}
+                          {% endif %}
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="offset-sm-2 col-sm-10">
+                          {{ form.submit(class="btn btn-primary") }}
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
+              </div><!-- /.card-body -->
+            </div>
+            <!-- /.nav-tabs-custom -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  {% include 'footer.html' %}
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="{{ url_for('static', filename='plugins/jquery/jquery.min.js') }}"></script>
+<!-- Bootstrap 4 -->
+<script src="{{ url_for('static', filename='plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- AdminLTE App -->
+<script src="{{ url_for('static', filename='dist/js/adminlte.js') }}"></script>
+<script src="{{ url_for('static',filename='plugins/toastr/toastr.min.js') }}"></script>
+<script>
+  $(document).ready(function() {
+    var flashMessages = [
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            ['{{ category }}', '{{ message|safe }}'],
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+    ];
+
+    if (flashMessages) {
+      flashMessages.forEach(function(message) {
+        var category = message[0];
+        var messageText = message[1];
+
+        if (category === "success") {
+          toastr.success(messageText);
+        } else if (category === "info") {
+          toastr.info(messageText);
+        } else if (category === "danger") {
+          toastr.error(messageText);
+        } else if (category === "warning") {
+          toastr.warning(messageText);
+        }
+      });
+    }
+  });
+</script>
+</body>
+</html>
