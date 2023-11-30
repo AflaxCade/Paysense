@@ -76,10 +76,26 @@ export FLASK_APP=run.py
 export FLASK_ENV=development
 ```
 
+```bash
+export SECRET_KEY=Type your own secret key
+```
 
+```bash
+export MAIL_USERNAME=Your own email
+```
 
+```bash
+export MAIL_PASSWORD=Your own password
+```
 
+Note: The `MAIL_USERNAME`, `MAIL_PASSWORD`, and `SECRET_KEY` are essential environment variables for the application to function properly. If you haven't set these directly in your environment, you can set them within the application itself:
+In `Paysense/app/__init__.py`, Modify or change these variables:
 
+```python
+app.config['MAIL_USERNAME'] = 'Example@example.com'
+app.config['MAIL_PASSWORD'] = 'Password'
+app.config['SECRET_KEY'] = 'Yoursecretkey'
+```
 
 
 
