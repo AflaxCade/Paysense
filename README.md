@@ -29,7 +29,7 @@ Paysense is a robust and user-friendly Flask web application that serves as a co
 1. Clone the repository:
 
 ```bash
-  git clone https://github.com/AflaxCade/Paysense.git
+git clone https://github.com/AflaxCade/Paysense.git
 ```
 
 ## License
