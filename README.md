@@ -12,3 +12,9 @@ Paysense is a robust and user-friendly Flask web application that serves as a co
 - Profile Management: Enables users to manage their profile information, including personal details and preferences.
 - User-Friendly Interface: Offers an intuitive and easy-to-use interface for effortless navigation and interaction.
 - Administrator Features: Provides administrators with functionalities to manage user accounts and access summary information about all accounts.
+
+## Technology Stack
+
+- Backend: Python, Flask
+- Database: SQLAlchemy with (SQLITE) for development or testing purpose.
+- Frontend: HTML, CSS, JavaScript.
