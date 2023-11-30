@@ -66,6 +66,18 @@ pip install -r requirements.txt
 
 ## Usage
 
+1. Set the environment variables:
+
+```bash
+export FLASK_APP=app.py
+export FLASK_ENV=development
+```
+
+
+
+
+
+
 
 
 
