@@ -32,5 +32,42 @@ Paysense is a robust and user-friendly Flask web application that serves as a co
 git clone https://github.com/AflaxCade/Paysense.git
 ```
 
+2. Navigate to the project directory:
+
+```bash
+cd Paysense
+```
+
+3. Create a virtual environment:
+
+```bash
+python3 -m venv venv
+```
+
+4. Activate the virtual environment:
+
+- For Windows:
+
+```bash
+venv\Scripts\activate
+```
+
+- For macOS and Linux:
+
+```bash
+source venv/bin/activate
+```
+
+5. Install the required dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+## Usage
+
+
+
+
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
