@@ -89,7 +89,7 @@ export MAIL_PASSWORD=Your own password
 ```
 
 Note: The `MAIL_USERNAME`, `MAIL_PASSWORD`, and `SECRET_KEY` are essential environment variables for the application to function properly. If you haven't set these directly in your environment, you can set them within the application itself:
-In `Paysense/app/__init__.py`, Modify or change these variables:
+In `Paysense/app/__init__.py`, Modify or change these variables like this:
 
 ```python
 app.config['MAIL_USERNAME'] = 'Example@example.com'
@@ -97,7 +97,37 @@ app.config['MAIL_PASSWORD'] = 'Password'
 app.config['SECRET_KEY'] = 'Yoursecretkey'
 ```
 
+2. Run the application:
 
+```bash
+flask run
+```
+
+The application should now be running at `http://localhost:5000`.
+
+## Testing
+
+To test the application, you can visit the hosted version of the app at [Paysense on Render](https://paysense.onrender.com).
+
+### Test User Credentials
+
+- **Email:** guest@example.com
+- **Password:** 123456
+
+Please note that the provided test user (`guest@example.com`) does not have admin privileges.
+
+Be patient with the link; it might load slowly the first time because free instance types tend to spin down due to inactivity.
+
+## Contributing
+
+If you'd like to contribute to this project, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/your-feature`).
+3. Make your changes.
+4. Commit your changes (`git commit -am 'Add some feature'`).
+5. Push to the branch (`git push origin feature/your-feature`).
+6. Create a new Pull Request.
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
