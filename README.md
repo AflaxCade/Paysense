@@ -18,3 +18,19 @@ Paysense is a robust and user-friendly Flask web application that serves as a co
 - Backend: Python, Flask
 - Database: SQLAlchemy with (SQLITE) for development or testing purpose.
 - Frontend: HTML, CSS, JavaScript.
+
+## Installation
+
+### Requirements
+
+- Python 3.x
+- Pip
+
+1. Clone the repository:
+
+```bash
+  git clone https://github.com/AflaxCade/Paysense.git
+```
+
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
