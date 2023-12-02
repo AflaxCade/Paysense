@@ -88,15 +88,15 @@ export FLASK_ENV=development
 ```
 
 ```bash
-export SECRET_KEY=Type your own secret key
+export SECRET_KEY=Typeyourownsecretkey
 ```
 
 ```bash
-export MAIL_USERNAME=Your own email
+export MAIL_USERNAME=Yourownemail
 ```
 
 ```bash
-export MAIL_PASSWORD=Your own password
+export MAIL_PASSWORD=Yourownpassword
 ```
 
 Note: The `MAIL_USERNAME`, `MAIL_PASSWORD`, and `SECRET_KEY` are essential environment variables for the application to function properly. If you haven't set these directly in your environment, you can set them within the application itself:
