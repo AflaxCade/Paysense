@@ -118,7 +118,7 @@ The application should now be running at `http://localhost:5000`.
 
 ## Testing
 
-To test the application, you can visit the hosted version of the app at [Paysense on Render](https://paysense.onrender.com).
+To test the application, you can visit the hosted version of the app at [Paysense on Railway](https://paysense-production.up.railway.app).
 
 ### Test User Credentials
 
