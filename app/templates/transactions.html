@@ -111,14 +111,6 @@
                       </h5>
                     </td>
                     <td>{{ transaction.date.strftime('%Y-%m-%d')}}</td>
-                    <td>
-                      <div class="d-flex justify-content-center align-items-center h-100">
-                        <button type="button" class="btn btn-success btn-sm mr-2" data-toggle="modal" data-target="#modal-update-withdraw-{{ transaction.transaction_id }}"><i class="fas fa-edit"></i></button>
-                        <button type="button" class="btn btn-danger btn-sm ml-2" data-toggle="modal" data-target="#modal-danger-{{ transaction.transaction_id }}">
-                          <i class="fas fa-trash"></i>
-                        </button>
-                      </div>
-                    </td>
                   </tr>                  
                 {% endfor %}
                 </tbody>
