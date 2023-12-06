@@ -84,6 +84,9 @@
                 <thead>
                 <tr>
                   <th>Transaction ID.</th>
+                  {% if current_user.usertype == 'Admin' %}
+                    <th>Owner User</th>
+                  {% endif %}
                   <th>Account Name</th>
                   <th>Amount</th>
                   <th>Description</th>
@@ -96,6 +99,9 @@
                 {% for transaction in transactions %}
                   <tr>
                     <td>{{ transaction.transaction_id }}</td>
+                    {% if current_user.usertype == 'Admin' %}
+                      <td>{{ transaction.account.owner.username }}</td>
+                    {% endif %}
                     <td>{{ transaction.account.account_name }}</td>
                     <td>{{ transaction.amount}}</td>
                     <td>{{ transaction.description}}</td>
